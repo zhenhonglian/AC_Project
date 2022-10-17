@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c95f3e7f19c8a2b498d82abc934ed835, type: 3}
+  m_Name: 00002
+  m_EditorClassIdentifier: 
+  skillID: 0
+  skillName: "\u5168\u526F\u6B66\u88C5"
+  skillType: 0
+  triggerName: 
+  skillTarget: 0
+  skillBuffType: 01000000
+  skillValues:
+  - nowValueType: 4
+    nowSkillValue: 1
+    skillTime: 0
+    skillSpwanTime: 0
+    pr: 0
+  skillLevel: 3
+  skillMaxLevel: 3
+  skillImage: {fileID: 21300000, guid: e37776d8ec5ee564f93619f1907a585d, type: 3}
+  skillDes: "\u73A9\u5BB6\u8840\u91CF\u63D0\u9AD8100%"
+  isUnlocked: 0
+  damgeType: 0
