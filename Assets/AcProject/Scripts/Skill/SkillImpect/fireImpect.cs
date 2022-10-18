@@ -33,6 +33,7 @@ public class fireImpect : Iimpect
                 if (nowSkill.skillID==AcPlayerCon.instance.myCoroutines[i].id)
                 {
                     AcPlayerCon.instance.StopCoroutine(AcPlayerCon.instance.myCoroutines[i].mycor);
+                    AcPlayerCon.instance.myCoroutines.Remove(AcPlayerCon.instance.myCoroutines[i]);
                     break;
                 }
             }

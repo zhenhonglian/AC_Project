@@ -50,7 +50,7 @@ public class AcPlayerCon : MonoBehaviour
     public List<PercentPlayerData> myPercentDatas=new List<PercentPlayerData>();
     //状态
     public GameObject diePrefab;
-    public List<NowStartCor> myCoroutines=new List<NowStartCor>();
+    [SerializeField]public List<NowStartCor> myCoroutines=new List<NowStartCor>();
     private WaitForSeconds cutTime=new WaitForSeconds(0.01f);//计时器协程的间隔时间
     //玩家技能
     public static AcPlayerCon instance;
@@ -381,7 +381,7 @@ public class PercentPlayerData
         ID=id;
     }
 }
-
+[System.Serializable]
 public struct NowStartCor
 {
     public Coroutine mycor;

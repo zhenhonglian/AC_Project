@@ -13,21 +13,21 @@ MonoBehaviour:
   m_Name: 0008
   m_EditorClassIdentifier: 
   skillID: 8
-  skillName: "\u5927\u7403"
+  skillName: "\u706B\u7403"
   skillType: 0
-  triggerName: CloseAtk
+  triggerName: 
   skillTarget: 0
   skillBuffType: 08000000
   skillValues:
   - nowValueType: 0
-    nowSkillValue: 10
+    nowSkillValue: 5
     skillTime: 0
-    skillSpwanTime: 1
-    pr: 36
-  skillLevel: 0
-  skillMaxLevel: 0
+    skillSpwanTime: 2
+    pr: 72
+  skillLevel: 1
+  skillMaxLevel: 3
   skillImage: {fileID: 21300000, guid: beb5036a23ca30940b17aa395a1234c2, type: 3}
-  skillDes: 
+  skillDes: "\u5F80\u56DB\u5468\u53D1\u5C04\u706B\u7403"
   isUnlocked: 0
   damgeType: 0
   prefab: {fileID: 3184498225686764161, guid: 5fb56ff0b635cff43996a6ab2f60060e, type: 3}

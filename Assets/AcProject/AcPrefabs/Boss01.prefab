@@ -127,7 +127,8 @@ MonoBehaviour:
   startScal: {x: 3, y: 3, z: 1}
   exp: 5000
   currentExp: 0
-  items: []
+  items:
+  - {fileID: 2055102311959635369, guid: 99597c7b4aa47494fb2b6061505735da, type: 3}
 --- !u!50 &1523651236597918335
 Rigidbody2D:
   serializedVersion: 4
@@ -148,7 +149,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &5771418513599541091
 CircleCollider2D:
   m_ObjectHideFlags: 0

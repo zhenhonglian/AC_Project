@@ -7,8 +7,9 @@ public class AcGameManager : MonoBehaviour
     // Start is called before the first frame update
     public static AcGameManager instance;
     private float maxX,maxY,minX,minY;
-    public GameObject enemyPrefab,bossPrefab;
-    int bossCome;
+    public List<GameObject> enemyPrefabs=new List<GameObject>();
+    public GameObject bossPrefab;
+    int bossCome,warriorCome;
     WaitForSeconds time;
     public float spwanTime;
     Vector2 enemyBornPos;
@@ -121,8 +122,14 @@ public class AcGameManager : MonoBehaviour
             GameObject theEnemy;
             if(bossCome<100)
             {
-                theEnemy= PoolManager.Release(enemyPrefab,enemyBornPos);
+                theEnemy= PoolManager.Release(enemyPrefabs[0],enemyBornPos);
                 bossCome++;
+                warriorCome++;
+                if(warriorCome>30)
+                {
+                    activeEnemyList.Add(PoolManager.Release(enemyPrefabs[1],enemyBornPos));
+                    warriorCome=0;
+                }
             }
             else 
             {
