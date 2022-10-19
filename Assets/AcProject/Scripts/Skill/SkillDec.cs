@@ -12,6 +12,8 @@ public class SkillDec : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public GameObject skillDec;
     Image myImage;
 
+    public bool isGet;
+
     public void OnPointerEnter(PointerEventData eventData)
     {   
         if(myskill!=null)
@@ -38,7 +40,7 @@ public class SkillDec : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         myImage=GetComponent<Image>();
            
     }
-    public void UpdateSkillButton(Skill _skill,int i)
+    public void UpdateSkillButton(Skill _skill,int i,bool _isGet)
     {
 
             myskill=_skill;
@@ -47,8 +49,11 @@ public class SkillDec : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
                 myImage=GetComponent<Image>();
             }
             myImage.sprite=myskill.skillImage;
+            myImage.color=new Color(myImage.color.r,myImage.color.g,myImage.color.b,0.15f);
             buttonNub=i;
+            isGet=_isGet;
 
     }
     // Update is called once per frame
+
 }

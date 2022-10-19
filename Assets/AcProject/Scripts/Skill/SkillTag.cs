@@ -34,8 +34,8 @@ public enum e_SkillBuffType
 public enum e_SkillValue
 {
     Null,
-    Gold,//金钱
-    Dmg,//防御塔伤害
+    CloseAtkSpeed,//金钱
+    ExpGet,//防御塔伤害
     Atkspwan,//攻击速度
     PlayerHp,//玩家血量
     PlayerPower,//玩家伤害

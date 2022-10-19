@@ -23,18 +23,20 @@ public class AcPlayerCon : MonoBehaviour
     [Header("攻击信息")]
     public GameObject buttle,colseAtk;
     public GameObject[] firePoint=new GameObject[4];
-    public float atkSpeed;
-
+    public float  baseAtkSpeed;
+    private float  atkSpeed;
     private float atkTime;
     [Header("玩家信息")]//等级、血量、近战速度、移动速度、经验值 攻击强度
     public float playerHp;
     public int playerMaxLevel;
     public float baseHp=50;
     public float nowEXP;
+    public float maxExp;
+    public float addExp=0;
     public int playerNowLevel;
     public float maxHp;
     public float nowHp;
-    public float maxExp;
+    
     public float cureHp;//定期回复的血量
     float cureTime=0.5f;//回复间隔
     float moveY,moveX;//角色移动
@@ -281,6 +283,7 @@ public class AcPlayerCon : MonoBehaviour
     public void GetExp(float exp)
     {
         //传入的exp将会和玩家的经验值加成进行计算
+        exp=exp*(1+addExp);
         nowEXP+=exp;
         while(nowEXP>=maxExp)
         {
@@ -317,7 +320,7 @@ public class AcPlayerCon : MonoBehaviour
         switch (x)
         {
             case 0:
-                atkSpeed+=0.1f;
+                baseAtkSpeed+=0.1f;
             break;
             case 1:
                 baseMoveSpeed+=0.1f;
@@ -342,11 +345,14 @@ public class AcPlayerCon : MonoBehaviour
         power=basePower;
         maxHp=baseHp;
         moveSpeed=baseMoveSpeed;
+        atkSpeed=baseAtkSpeed;
         for (int i = 0; i < myPercentDatas.Count; i++)
         {
             maxHp=maxHp*(1+myPercentDatas[i].hp);
             power=power*(1+myPercentDatas[i].power);
             moveSpeed=moveSpeed*(1+myPercentDatas[i].moveSpeed);
+            atkSpeed=atkSpeed*(1+myPercentDatas[i].atkSpeed);
+            
         }
         
 

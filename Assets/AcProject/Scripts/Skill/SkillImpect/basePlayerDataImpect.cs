@@ -37,6 +37,12 @@ public class precentPlayerDataImpect : Iimpect
             case e_SkillValue.WeaponSize:
                 _player.closeAtkSize+=nowValue;
             break;
+            case e_SkillValue.CloseAtkSpeed:
+                 _player.myPercentData.atkSpeed+=nowValue;
+            break;
+            case e_SkillValue.ExpGet:
+                 _player.addExp+=nowValue;
+            break;
   
         }
         _player.UpdatePlayerData();

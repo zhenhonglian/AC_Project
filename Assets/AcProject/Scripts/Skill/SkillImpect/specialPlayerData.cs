@@ -45,6 +45,14 @@ public class specialPlayerDataImpect : Iimpect
                 case e_SkillValue.PlayerPower:
                 nowdata.power+=skill.skillValues[i].nowSkillValue;
                 break;
+
+                case e_SkillValue.PlayerMoveSpeed:
+                nowdata.moveSpeed+=skill.skillValues[i].nowSkillValue;
+                break;
+
+                case e_SkillValue.CloseAtkSpeed:
+                nowdata.atkSpeed+=skill.skillValues[i].nowSkillValue;
+                break;
             }
             _player.myPercentDatas.Add(nowdata);
         }
