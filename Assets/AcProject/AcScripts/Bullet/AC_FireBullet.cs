@@ -36,7 +36,8 @@ public class AC_FireBullet : Ac_Bullet
             }
             if(canHurt)
             {
-                nowEnemy.GetHurt(dmg);
+                
+                nowEnemy.GetHurt(trueDmg);
                 isAtkEnemys.Add(nowEnemy);
             }
             //.GetHurt(dmg);
@@ -44,10 +45,13 @@ public class AC_FireBullet : Ac_Bullet
     }
     public override void OnRest()
     {
+        isAtkEnemys.Clear();
         transform.localScale=new Vector3(0.3f,0.3f,1f);
         activeTime=0.8f;
-        dmg=5*(1+AcPlayerCon.instance.powerLevel);
-        isAtkEnemys.Clear();
+        dmg=5*(1+AcPlayerCon.instance.powerLevel)*0.5f;
+        trueDmg=dmg;
+        EventManager.instance.EventTrigger("BulletAtk",this);
+        
     }
 
 

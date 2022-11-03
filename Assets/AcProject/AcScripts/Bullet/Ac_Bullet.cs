@@ -7,6 +7,7 @@ public class Ac_Bullet : MonoBehaviour,IRestLoad
     // Start is called before the first frame update
     protected float Speed=20f;
     public float dmg=0f;
+    public float trueDmg;
     protected float activeTime=0.5f;
 
     public virtual void OnRest()
@@ -27,7 +28,7 @@ public class Ac_Bullet : MonoBehaviour,IRestLoad
         {
             //Debug.Log("aaa");
             gameObject.SetActive(false);
-            other.gameObject.GetComponent<Ac_Enemy>().GetHurt(dmg);
+            other.gameObject.GetComponent<Ac_Enemy>().GetHurt(trueDmg);
         }
     }
 

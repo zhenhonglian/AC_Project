@@ -117,31 +117,37 @@ public class AcGameManager : MonoBehaviour
         
         while(true)
         {   
-            
-            EdgeCheck();
-            GameObject theEnemy;
             if(bossCome<100)
             {
-                theEnemy= PoolManager.Release(enemyPrefabs[0],enemyBornPos);
+                CreatOneGamobject(enemyPrefabs[0]);
                 bossCome++;
                 warriorCome++;
                 if(warriorCome>30)
                 {
-                    activeEnemyList.Add(PoolManager.Release(enemyPrefabs[1],enemyBornPos));
+                    CreatOneGamobject(enemyPrefabs[1]);
                     warriorCome=0;
                 }
             }
             else 
             {
-                theEnemy=PoolManager.Release(bossPrefab,enemyBornPos);
+                CreatOneGamobject(bossPrefab);
                 bossCome=0;
             }   
-
-            if(!activeEnemyList.Contains(theEnemy))
-            activeEnemyList.Add(theEnemy);
             yield return time;
         }
        
+    }
+    /// <summary>
+    /// 用于产生敌人的方法 
+    /// </summary>
+    /// <param name="_this">传入需要产生的敌人的预制体</param>
+    private void CreatOneGamobject(GameObject _this)
+    {
+        GameObject theEnemy;
+        EdgeCheck();
+        theEnemy= PoolManager.Release(_this,enemyBornPos);
+        if(!activeEnemyList.Contains(theEnemy))
+            activeEnemyList.Add(theEnemy);
     }
     public void ExitGame()
     {

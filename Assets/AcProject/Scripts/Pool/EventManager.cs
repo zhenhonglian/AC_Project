@@ -71,10 +71,10 @@ public class EventManager : MonoBehaviour
     }
     public void EventTrigger(string name)
     {
-        //Debug.Log(UiDic.ContainsKey(name));
+        //Debug.Log(name);
         if(UiDic.ContainsKey(name))
         {
-            UiDic[name].Invoke();
+            UiDic[name]?.Invoke();
         }
 
     }

@@ -49,6 +49,7 @@ public class AC_laserBullet : Ac_Bullet
         } 
         
         dmg=AcPlayerCon.instance.colseAtk.GetComponent<AC_Dao>().dam*(1+AcPlayerCon.instance.powerLevel)*0.2f;
+        trueDmg=dmg;
     }
 
 }

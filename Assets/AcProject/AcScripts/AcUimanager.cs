@@ -7,7 +7,7 @@ public class AcUimanager : MonoBehaviour
     public static AcUimanager instance;   
     [Header("玩家UI")]
     public Text uPlayerLevel,mapLevel,gameTime;
-    public Text playerExp,playerHp,playerPower;
+    public Text playerExp,playerHp,playerPower,playerAtkSpeed,playerMoveSpeed;
     public Image uNowEXP,uMidEXP,uNowHp,uMidHp;
     public GameObject menuPanel,playerMenu;
     public float expChangeSpeed;
@@ -31,12 +31,6 @@ public class AcUimanager : MonoBehaviour
     void Start()
     {
         StartCoroutine(UpdatePlayerUi());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void PlayerUiChange(float x,float y,int z)
@@ -84,5 +78,7 @@ public class AcUimanager : MonoBehaviour
         playerHp.text=_player.nowHp.ToString()+"/"+_player.maxHp.ToString();
         playerExp.text=_player.nowEXP.ToString()+"/"+_player.maxExp.ToString();
         playerPower.text=_player.power.ToString();
+        playerAtkSpeed.text=_player.AtkSpeed.ToString();
+        playerMoveSpeed.text=_player.moveSpeed.ToString();
     }
 }

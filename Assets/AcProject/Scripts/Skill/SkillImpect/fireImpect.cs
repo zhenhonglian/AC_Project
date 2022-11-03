@@ -16,6 +16,7 @@ public class fireImpect : Iimpect
         mid=((int)(nowSkill.skillValues[index].nowSkillValue/2));
         if(!isRemove&&nowSkill.skillType==e_SkillType.trigger)
         {   EventManager.instance.AddEventListener(nowSkill.triggerName, Fire);
+            //Debug.Log(nowSkill.skillID.ToString());
             EventManager.instance.AddEventListener(nowSkill.skillID.ToString(),RemoveThisSelf);
         }
         if(!isRemove&&nowSkill.skillType==e_SkillType.normal)
@@ -55,9 +56,10 @@ public class fireImpect : Iimpect
         }
     }
 
-    public void RemoveThisSelf(object _self)
+    public void RemoveThisSelf()
     {
         EventManager.instance.RemoveEventListener(nowSkill.triggerName, Fire);
+        //Debug.Log("11111111");
     }
 
     IEnumerator AutoFire(Skill skilldata)

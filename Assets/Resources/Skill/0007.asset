@@ -20,7 +20,7 @@ MonoBehaviour:
   skillBuffType: 08000000
   skillValues:
   - nowValueType: 0
-    nowSkillValue: 5
+    nowSkillValue: 3
     skillTime: 0
     skillSpwanTime: 0.5
     pr: 5

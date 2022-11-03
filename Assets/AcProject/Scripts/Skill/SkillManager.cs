@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -193,9 +193,10 @@ public class SkillManager : MonoBehaviour
                 break;
             }
         }
-        useSkill(skillDecs[index].myskill,true);
+        
         if(skillDecs[index].myskill.skillType==e_SkillType.trigger)
-        EventManager.instance.EventTrigger(skillDecs[0].myskill.skillID.ToString(),this);
+        EventManager.instance.EventTrigger(skillDecs[index].myskill.skillID.ToString());
+        else useSkill(skillDecs[index].myskill,true);
         
         skillDecs[index].myskill=Resources.Load("Skill/"+skillDecs[index].myskill.skillID.ToString("0000")+(skillDecs[index].myskill.skillLevel).ToString())as Skill;
         if(skillDecs[index].myskill.skillLevel>=skillDecs[index].myskill.skillMaxLevel)
@@ -209,8 +210,8 @@ public class SkillManager : MonoBehaviour
 
     public void PlayerGetSkill()
     {
-            UICon.ChangeUI(skillChosePanel);
-            Time.timeScale=0f;
+        UICon.ChangeUI(skillChosePanel);
+        Time.timeScale=0f;
         canGetSkillClone.Clear();
         canImproveSkillsClone.Clear();            
         for (int i = 0; i < canGetSkill.Count; i++)

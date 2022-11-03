@@ -14,8 +14,17 @@ public class doubleDmgImpect : Iimpect
         index=num;
 
         if(!isRemove)
-        {   EventManager.instance.AddEventListener(nowSkill.triggerName, DoubleDmg);
-            EventManager.instance.AddEventListener(nowSkill.skillID.ToString(),RemoveThisSelf);
+
+        {   if(nowSkill.triggerName=="GunAtk")
+            {
+                EventManager.instance.AddEventListener(nowSkill.triggerName, DoubleDmg);
+                EventManager.instance.AddEventListener(nowSkill.skillID.ToString(),RemoveThisSelf);
+            }
+            if(nowSkill.triggerName=="BulletAtk")
+            {
+                EventManager.instance.AddEventListener(nowSkill.triggerName, DoubleDmgT);
+                EventManager.instance.AddEventListener(nowSkill.skillID.ToString(),RemoveThisSelfT);
+            }
         }
 
 
@@ -32,9 +41,24 @@ public class doubleDmgImpect : Iimpect
             (_thisGun as Gun).trueDmg=t*(1+nowSkill.skillValues[index].nowSkillValue);
         }
     }
+    public void DoubleDmgT(object _thisGun)
+    {
+        t=
+        (_thisGun as Ac_Bullet).trueDmg;
+        if(Random.Range(0,1f)<nowSkill.skillValues[index].pr)
+        {
+            (_thisGun as Ac_Bullet).trueDmg=t*(1+nowSkill.skillValues[index].nowSkillValue);
+            //Debug.Log(t);
+        }
+    }
 
-    public void RemoveThisSelf(object _self)
+    public void RemoveThisSelf()
     {
         EventManager.instance.RemoveEventListener(nowSkill.triggerName, DoubleDmg);
+    }
+    public void RemoveThisSelfT()
+    {
+        EventManager.instance.RemoveEventListener(nowSkill.triggerName, DoubleDmgT);
+        //Debug.Log("11111111111111111111111");
     }
 }

@@ -25,6 +25,7 @@ public class AcPlayerCon : MonoBehaviour
     public GameObject[] firePoint=new GameObject[4];
     public float  baseAtkSpeed;
     private float  atkSpeed;
+    public float AtkSpeed{get{return atkSpeed;}}
     private float atkTime;
     [Header("玩家信息")]//等级、血量、近战速度、移动速度、经验值 攻击强度
     public float playerHp;
@@ -71,16 +72,17 @@ public class AcPlayerCon : MonoBehaviour
     void Start()
     {
         myPercentDatas.Add(myPercentData);
-        maxExp=playerNowLevel*playerNowLevel*1000;
+        maxExp=(playerNowLevel*playerNowLevel+1)*1000;
         EventManager.instance.AddEventListener("EnemyDie",EnemyDie);
         animator=GetComponent<Animator>();
         xiuzheng.y=1;
-        atkTime=0f;
+        
         trueDis=dis*dis;
         AcUimanager.instance.PlayerUiChange(nowEXP,maxExp,playerNowLevel);
         //Debug.Log(firePoint[0].TryGetComponent<GunTwo>(out GunTwo _gun));
         StartCoroutine(TimeCount());
         UpdatePlayerData();
+        atkTime=1/atkSpeed;
     }
 
     // Update is called once per frame
@@ -95,7 +97,7 @@ public class AcPlayerCon : MonoBehaviour
         }
         //if(dashCD>0)
         //dashCD-=Time.deltaTime;
-        if(Input.GetKeyDown(KeyCode.J)&&atkTime<=0)
+        if(atkTime<=0)
         {
 
             atkTime=1/atkSpeed;
@@ -314,25 +316,29 @@ public class AcPlayerCon : MonoBehaviour
     {
         nowEXP-=maxExp;
         playerNowLevel++;
-        maxExp=playerNowLevel*playerNowLevel*1000;
+        maxExp=(playerNowLevel*playerNowLevel+1)*1000;
         int x=Random.Range(0,3);
         //Debug.Log(x);
         switch (x)
         {
             case 0:
+                if(baseAtkSpeed<=3)
                 baseAtkSpeed+=0.1f;
+                else baseHp+=1;
             break;
             case 1:
+                if(baseAtkSpeed<=3)
                 baseMoveSpeed+=0.1f;
+                else baseHp+=1f;
             break;
             case 2:
-                baseHp+=2f;
+                baseHp+=1f;
             break;
                
 
         } 
 
-        basePower+=50;
+        basePower+=75;
         EventManager.instance.EventTrigger("PlayerLevelUp");
         if(playerNowLevel==5)
         firePoint[0].SetActive(true);
@@ -354,7 +360,10 @@ public class AcPlayerCon : MonoBehaviour
             atkSpeed=atkSpeed*(1+myPercentDatas[i].atkSpeed);
             
         }
-        
+        moveSpeed=moveSpeed>15?15:moveSpeed;
+        Debug.Log(moveSpeed);
+        atkSpeed=atkSpeed>5?5:atkSpeed;
+        Debug.Log(atkSpeed);     
 
         powerLevel=power/500;
 

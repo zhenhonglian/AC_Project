@@ -17,15 +17,15 @@ MonoBehaviour:
   skillType: 0
   triggerName: 
   skillTarget: 0
-  skillBuffType: 
+  skillBuffType: 01000000
   skillValues:
   - nowValueType: 1
     nowSkillValue: 0.5
     skillTime: 0
     skillSpwanTime: 0
     pr: 0
-  skillLevel: 0
-  skillMaxLevel: 0
+  skillLevel: 3
+  skillMaxLevel: 3
   skillImage: {fileID: 21300000, guid: 8c50bd05d115b8f48a1937f7025e5203, type: 3}
   skillDes: "\u8FD1\u6218\u653B\u901F\u63D0\u9AD850%"
   isUnlocked: 0
