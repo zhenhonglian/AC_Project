@@ -12,16 +12,18 @@ public class AcPlayerCon : MonoBehaviour
 {
     // Start is called before the first frame update
     Animator animator;
+    SpriteRenderer mySprite;
     float baseMoveSpeed=5f;
     public float moveSpeed;
     Vector2 moveDir=new Vector2(0,0);
-    Vector2 xiuzheng;
+    //Vector2 xiuzheng;
     bool isRunning;
     float dashTime=0f;
     public float dashCD=0f;
     float transmitTime=0f;
     [Header("攻击信息")]
     public GameObject buttle,colseAtk;
+    public GameObject playerPos;
     public GameObject[] firePoint=new GameObject[4];
     public float  baseAtkSpeed;
     private float  atkSpeed;
@@ -51,6 +53,7 @@ public class AcPlayerCon : MonoBehaviour
 
     public PercentPlayerData myPercentData=new PercentPlayerData(9999999);//对属性的百分比加成
     public List<PercentPlayerData> myPercentDatas=new List<PercentPlayerData>();
+    bool isflip=false;
     //状态
     public GameObject diePrefab;
     [SerializeField]public List<NowStartCor> myCoroutines=new List<NowStartCor>();
@@ -72,10 +75,11 @@ public class AcPlayerCon : MonoBehaviour
     void Start()
     {
         myPercentDatas.Add(myPercentData);
+        mySprite=GetComponent<SpriteRenderer>();
         maxExp=(playerNowLevel*playerNowLevel+1)*1000;
         EventManager.instance.AddEventListener("EnemyDie",EnemyDie);
         animator=GetComponent<Animator>();
-        xiuzheng.y=1;
+        //xiuzheng.y=1;
         
         trueDis=dis*dis;
         AcUimanager.instance.PlayerUiChange(nowEXP,maxExp,playerNowLevel);
@@ -92,6 +96,7 @@ public class AcPlayerCon : MonoBehaviour
         ChangeAnim();
         if(Input.GetKeyDown(KeyCode.Space)&&dashCD<=0)
         {
+            EventManager.instance.EventTrigger("Dash",this);
             dashTime=0.15f;
             dashCD=3f; 
         }
@@ -128,14 +133,22 @@ public class AcPlayerCon : MonoBehaviour
     private void Move()
     {
         moveDir.x=Input.GetAxisRaw("Horizontal");
-        xiuzheng.x=moveDir.x;
+        //xiuzheng.x=moveDir.x;
         moveDir.y=Input.GetAxisRaw("Vertical");
-        transform.Translate(xiuzheng*moveDir.normalized*moveSpeed*Time.fixedDeltaTime);
+        transform.Translate(moveDir.normalized*moveSpeed*Time.fixedDeltaTime);
         //Debug.Log(moveDir.normalized);
         if(moveDir.x<0)
-        transform.localEulerAngles=new Vector3(0,180,0);
+        {
+            isflip=true;playerPos.transform.localEulerAngles=new Vector3(0,180,0);
+            mySprite.flipX=true;
+        }
+        
         else if(moveDir.x>0)
-        transform.localEulerAngles=new Vector3(0,0,0);
+        {
+            isflip=false;playerPos.transform.localEulerAngles=new Vector3(0,0,0);
+            mySprite.flipX=false;
+        }
+        
         //else if(moveDir.x*transform.right.x>0) transform.Rotate(0,0,0);
     }
 
@@ -149,7 +162,7 @@ public class AcPlayerCon : MonoBehaviour
         animator.SetBool("IsDash",true);
         if(dashTime>0)
          {   if(moveDir.magnitude!=0)
-            transform.Translate(xiuzheng*moveDir.normalized*moveSpeed*Time.deltaTime*2f);
+            transform.Translate(moveDir.normalized*moveSpeed*Time.deltaTime*2f);
             else
             transform.Translate(Vector3.right*moveSpeed*Time.deltaTime*2f);
             dashTime-=Time.deltaTime;
@@ -169,6 +182,10 @@ public class AcPlayerCon : MonoBehaviour
     void Attack()
     {
         colseAtk.SetActive(true);
+        colseAtk.transform.position=transform.position;
+        if(isflip)
+        colseAtk.transform.eulerAngles=new Vector3(0,180,0);
+        else colseAtk.transform.eulerAngles=new Vector3(0,0,0);
         AudioManager.audioManager.PlayPlayerClip(2);
     }
     void TheMove()
@@ -179,9 +196,16 @@ public class AcPlayerCon : MonoBehaviour
         moveX=Input.GetAxisRaw("Horizontal")*moveSpeed;
         moveY=Input.GetAxisRaw("Vertical")*moveSpeed;
         if(moveX>0)
-        transform.eulerAngles=new Vector3(0,0,0);
+        {
+            transform.eulerAngles=new Vector3(0,0,0);
+            isflip=false;
+        }
         if(moveX<0)
-        transform.eulerAngles=new Vector3(0,180,0);
+        {
+            transform.eulerAngles=new Vector3(0,180,0);
+            isflip=true;
+        }
+        
     }
 
 

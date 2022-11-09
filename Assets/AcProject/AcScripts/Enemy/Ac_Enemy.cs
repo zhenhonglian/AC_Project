@@ -108,8 +108,11 @@ public class Ac_Enemy : MonoBehaviour,IRestLoad
             enemyBornPos.x=Random.Range(minX-5,maxX+5);
         }   
     }
+    
 
-
+/// <summary>
+/// 死亡产生物品的方法
+/// </summary>
     private void CreatItem()
     {
         int x=Random.Range(0,100);

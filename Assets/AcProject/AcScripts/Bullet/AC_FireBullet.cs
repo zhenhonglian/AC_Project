@@ -13,14 +13,16 @@ public class AC_FireBullet : Ac_Bullet
         transform.Translate(Vector3.up*Speed*0.6f*Time.deltaTime);
         activeTime-=Time.deltaTime;
         if(activeTime<=0)
-        gameObject.SetActive(false);
+        BulletDie();
     }
     protected override void OnTriggerEnter2D(Collider2D other)
     {
         if(other.transform.CompareTag("Enemy"))
         {
             //Debug.Log("aaa");
-            //gameObject.SetActive(false);
+            //gameObject.SetActive(false);        
+            Debug.Log(gunDmg);
+            trueDmg=gunDmg>0?gunDmg:dmg;
             bool canHurt=true;
             other.gameObject.TryGetComponent<Ac_Enemy>(out Ac_Enemy nowEnemy);
             if(isAtkEnemys.Count>0)
@@ -36,7 +38,7 @@ public class AC_FireBullet : Ac_Bullet
             }
             if(canHurt)
             {
-                
+                EventManager.instance.EventTrigger("BulletAtk",this);
                 nowEnemy.GetHurt(trueDmg);
                 isAtkEnemys.Add(nowEnemy);
             }
@@ -49,8 +51,8 @@ public class AC_FireBullet : Ac_Bullet
         transform.localScale=new Vector3(0.3f,0.3f,1f);
         activeTime=0.8f;
         dmg=5*(1+AcPlayerCon.instance.powerLevel)*0.5f;
-        trueDmg=dmg;
-        EventManager.instance.EventTrigger("BulletAtk",this);
+        //trueDmg=dmg;
+
         
     }
 

@@ -22,6 +22,8 @@ public class SkillManager : MonoBehaviour
     public GameObject skillChosePanel;
     public Dictionary<int, Skill> gameSkills=new Dictionary<int, Skill>();
     public int skillPrefabsLength;
+
+    private int choseSkillCount;
     void Start()
     {  
         for (int i = 0; i < skillPrefabsLength; i++)
@@ -38,6 +40,7 @@ public class SkillManager : MonoBehaviour
        }
 
        EventManager.instance.AddEventListener("PlayerLevelUp",PlayerGetSkill);
+       EventManager.instance.AddEventListener("PlayerLevelUp",ChoseCount);
         //mySkills=PlayerSence.mySkill;
         UseSkill(mySkills); 
         UpdateSkillUi();
@@ -208,9 +211,16 @@ public class SkillManager : MonoBehaviour
 
     }
 
+    public void ChoseCount()
+    {
+        choseSkillCount++;
+    }
     public void PlayerGetSkill()
     {
-        UICon.ChangeUI(skillChosePanel);
+        //choseSkillCount++;
+        //choseSkillCount--;
+        //UICon.ChangeUI(skillChosePanel);
+        skillChosePanel.SetActive(true);
         Time.timeScale=0f;
         canGetSkillClone.Clear();
         canImproveSkillsClone.Clear();            
@@ -325,8 +335,21 @@ public class SkillManager : MonoBehaviour
         GetNewSkill(a.myskill.skillID);
         else
         SkillLevelUp(a.myskill.skillID);
+        choseSkillCount--;
+        UICon.ChangeUI(skillChosePanel);
+        
+        Time.timeScale=1f;
+        if(choseSkillCount>0)
+        PlayerGetSkill();
+    }
+
+    public void GiveUpSkill()
+    {
+        choseSkillCount--;
         UICon.ChangeUI(skillChosePanel);
         Time.timeScale=1f;
+        if(choseSkillCount>0)
+        PlayerGetSkill();
     }
 
 }

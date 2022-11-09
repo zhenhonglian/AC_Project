@@ -59,7 +59,7 @@ public class Gun : MonoBehaviour,UpdateMyData
         trueDmg=dmg;
         EventManager.instance.EventTrigger("GunAtk",this);//部分技能效果会在武器发动攻击时生效 所以需要调用事件中心中对应事件，在技能获得时添加事件 技能移除时移除事件
          PoolManager.Release(bulletPrefab,this.transform.position,(targets[0].transform.position-
-         transform.position).normalized).GetComponent<Ac_Bullet>().dmg=this.trueDmg;
+         transform.position).normalized).GetComponent<Ac_Bullet>().gunDmg=this.trueDmg;
     }
 
 

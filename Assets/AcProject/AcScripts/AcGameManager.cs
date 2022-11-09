@@ -20,7 +20,7 @@ public class AcGameManager : MonoBehaviour
     float gameTime=0f;//将会影响地图等级
     public float currentTime;
     public static int mapLevel;//将会影响怪物当前的数值和生成怪物的种类
-    int maxMapLevl=20;
+    int maxMapLevl=30;
     int spwanLevel;//影响敌人生成效率 当场景中怪物过多时降低生成速度 尽量保证怪物数量少于1000
     /// <summary>
     /// Awake is called when the script instance is being loaded.

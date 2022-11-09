@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f42c5b0ebc04a694ab1ba76ebd9c8973, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -119,13 +119,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
-  maxHp: 20
+  maxHp: 10
   hp: 0
   damTextPrefab: {fileID: 8338359095918508455, guid: 667fb29dbe761db48ac2f7e9ee9fa0f9,
     type: 3}
   IsinAREA: 0
   startScal: {x: 3, y: 3, z: 0}
-  exp: 200
+  exp: 50
   currentExp: 0
   items:
   - {fileID: 2055102311959635369, guid: 99597c7b4aa47494fb2b6061505735da, type: 3}

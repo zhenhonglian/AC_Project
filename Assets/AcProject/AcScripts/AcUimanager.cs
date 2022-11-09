@@ -11,7 +11,9 @@ public class AcUimanager : MonoBehaviour
     public Image uNowEXP,uMidEXP,uNowHp,uMidHp;
     public GameObject menuPanel,playerMenu;
     public float expChangeSpeed;
+    [Header("音效")]
     public Slider volumeSlider;
+    public Slider volumeSliderS;
 
     //地图信息
     void Awake()
@@ -75,10 +77,10 @@ public class AcUimanager : MonoBehaviour
     }
     public void UpdatePlayerMeun(AcPlayerCon _player)
     {
-        playerHp.text=_player.nowHp.ToString()+"/"+_player.maxHp.ToString();
-        playerExp.text=_player.nowEXP.ToString()+"/"+_player.maxExp.ToString();
-        playerPower.text=_player.power.ToString();
-        playerAtkSpeed.text=_player.AtkSpeed.ToString();
-        playerMoveSpeed.text=_player.moveSpeed.ToString();
+        playerHp.text=_player.nowHp.ToString("F2")+"/"+_player.maxHp.ToString("F2");
+        playerExp.text=_player.nowEXP.ToString("F2")+"/"+_player.maxExp.ToString("F2");
+        playerPower.text=_player.power.ToString("F2");
+        playerAtkSpeed.text=_player.AtkSpeed.ToString("F2");
+        playerMoveSpeed.text=_player.moveSpeed.ToString("F2");
     }
 }

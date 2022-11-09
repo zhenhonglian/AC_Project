@@ -17,7 +17,7 @@ public class GunTwo : Gun
         {
 
           GameObject bullet=  PoolManager.Release(bulletPrefab,this.transform.position,Quaternion.AngleAxis((i-mid)*15,Vector3.forward)*dir);
-            bullet.GetComponent<Ac_Bullet>().dmg=this.trueDmg;
+            bullet.GetComponent<Ac_Bullet>().gunDmg=this.trueDmg;
          //Debug.Log(transform.forward);
          //bullet.transform.rotation=new Quaternion(0,0,bullet.transform.rotation.x+(i-mid)*5,0);
          //Debug.Log(transform.rotation.z);

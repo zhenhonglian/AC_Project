@@ -51,7 +51,7 @@ public class fireImpect : Iimpect
         //if(AcPlayerCon.instance.enemyList.Count>0)
         for (int i = 0; i < nowSkill.skillValues[index].nowSkillValue; i++)
         {
-            PoolManager.Release(nowSkill.prefab,(_player as AcPlayerCon).transform.position,Quaternion.AngleAxis((i-mid)*nowSkill.skillValues[index].pr,Vector3.forward)*(_player as AcPlayerCon).transform.right);
+            PoolManager.Release(nowSkill.prefab,(_player as AcPlayerCon).playerPos.transform.position,Quaternion.AngleAxis((i-mid)*nowSkill.skillValues[index].pr,Vector3.forward)*(_player as AcPlayerCon).playerPos.transform.right);
             //Debug.Log(i);
         }
     }
